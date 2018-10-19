@@ -6,6 +6,8 @@ use Yii;
 use backend\modules\chi\models\Expenditure;
 use backend\modules\chi\models\ExpenditureItems;
 use backend\modules\chi\models\Model;
+use backend\modules\chi\models\Employee;
+use backend\modules\chi\models\CostType;
 use backend\modules\chi\models\ExpenditureSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -67,6 +69,18 @@ class ExpenditureController extends Controller
     public function actionCreate()
     {
         $model = new Expenditure();
+        
+        $employee = new Employee();
+        $dataEmployee = $employee->getAllEmployee();
+        if(empty($dataEmployee)){
+            $dataEmployee=array();
+        }
+
+        $cost_type = new CostType();
+        $dataCost = $cost_type->getAllCosttype();
+        if(empty($dataCost)){
+            $dataCost=array();
+        }
         $modelsExpenditureItem = [new ExpenditureItems];
 
         $model->created_at = time();
@@ -128,7 +142,9 @@ class ExpenditureController extends Controller
 
             return $this->render('create', [
                 'model' => $model,
-                'modelsExpenditureItem' => (empty($modelsExpenditureItem)) ? [new ExpenditureItems] : $modelsExpenditureItem
+                'modelsExpenditureItem' => (empty($modelsExpenditureItem)) ? [new ExpenditureItems] : $modelsExpenditureItem,
+                'dataEmployee'=>$dataEmployee,
+                'dataCost'=>$dataCost,
             ]);
         }
     }
