@@ -18,7 +18,7 @@ class EmployeeSearch extends Employee
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'user_add'], 'integer'],
+            [['id', 'created_at','cua_hang', 'updated_at', 'user_add'], 'integer'],
             [['name', 'phone', 'location', 'status'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class EmployeeSearch extends Employee
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'cua_hang' => $this->cua_hang,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'user_add' => $this->user_add,

@@ -8,6 +8,7 @@ use backend\modules\chi\models\EmployeeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\modules\doanhthu\models\CuaHang;
 
 /**
  * EmployeeController implements the CRUD actions for Employee model.
@@ -68,6 +69,7 @@ class EmployeeController extends Controller
 
         $model->created_at = time();
         $model->updated_at = time();
+        $model->status = true;
         $model->user_add = Yii::$app->user->id;
 
         $location = array(
@@ -77,6 +79,12 @@ class EmployeeController extends Controller
             4 =>'Nhân viên'
         );
 
+        $cuahang = new CuaHang();
+        $dataCuahang = $cuahang->getAllCuahang();
+        if(empty($dataCuahang)){
+            $dataCuahang = array();
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
@@ -84,6 +92,7 @@ class EmployeeController extends Controller
         return $this->render('create', [
             'model' => $model,
             'location' => $location,
+            'dataCuahang' => $dataCuahang,
         ]);
     }
 
@@ -108,12 +117,20 @@ class EmployeeController extends Controller
             4 =>'Nhân viên'
         );
 
+        $cuahang = new CuaHang();
+        $dataCuahang = $cuahang->getAllCuahang();
+        if(empty($dataCuahang)){
+            $dataCuahang = array();
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'location' => $location,
+            'dataCuahang' => $dataCuahang,
         ]);
     }
 

@@ -24,6 +24,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'total_money') ?>
 
+    <?= $form->field($model, 'cuahang_id') ?>
+
     <?= $form->field($model, 'note') ?>
 
     <?= $form->field($model, 'status') ?>

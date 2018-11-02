@@ -45,11 +45,26 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
+    public function actionError()
+    {
+            $error = Yii::app()->errorHandler->error;
+            switch($error['code'])
+            {
+                    case 403:
+
+                            $this->render('error403', array('error' => $error));
+                            break;
+                    default:
+                        $this->render('error404', array('error' => $error));
+                            break;
+            }
+    }
     public function actions()
     {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+                'layout' => 'error404'
             ],
         ];
     }

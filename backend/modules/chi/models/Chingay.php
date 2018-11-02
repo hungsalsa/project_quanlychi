@@ -34,11 +34,12 @@ class Chingay extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['day', 'status', 'created_at', 'updated_at', 'user_add'], 'required'],
+            [['day','cuahang_id', 'status', 'created_at', 'updated_at', 'user_add'], 'required'],
             [['day'], 'safe'],
-            [['total_money', 'created_at', 'updated_at', 'user_add'], 'integer'],
+            [['created_at','cuahang_id', 'updated_at', 'user_add'], 'integer'],
             [['note'], 'string'],
             [['status'], 'string', 'max' => 4],
+            [['day'], 'unique','message'=>'{attribute} này đã có'],
         ];
     }
 
@@ -49,21 +50,36 @@ class Chingay extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'day' => 'Day',
-            'total_money' => 'Total Money',
-            'note' => 'Note',
-            'status' => 'Status',
+            'day' => 'Ngày chi',
+            'cuahang_id' => 'Cửa hàng',
+            'total_money' => 'Tổng tiền',
+            'note' => 'Ghi chú',
+            'status' => 'Kích hoạt',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'user_add' => 'User Add',
         ];
     }
 
+    public function getAllChi()
+    {
+        return Chingay::find()
+                    ->joinWith('chitietchi')
+                    ->where(['tbl_expenditure.status' => true])
+                    ->all();
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTblExpenditureItems()
+    public function getChitietchi()
     {
-        return $this->hasMany(TblExpenditureItems::className(), ['expenditure_id' => 'id']);
+        return $this->hasMany(Chitietchi::className(), ['expenditure_id' => 'id']);
+    }
+
+    public function getOneChingay($day,$status = true)
+    {
+        $data =  self::find()->select('total_money')->where('day =:date AND status=:status',[':date'=>$day,':status'=>$status])->one();
+        return $data->total_money;
     }
 }

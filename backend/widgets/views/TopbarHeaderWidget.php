@@ -293,13 +293,15 @@
                      </li>
                      <li role="separator" class="divider"></li>
                      <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                     <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+                     <!-- <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
                      <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                      <li role="separator" class="divider"></li>
                      <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                     <li role="separator" class="divider"></li>
-                     <li><?= Html::a('<i class="fa fa-power-off"></i> Logout', ['site/logout'], ['data' => ['method' => 'post']]) ?>
+                     <li role="separator" class="divider"></li> -->
+                     <li><?= Html::a('<i class="fa fa-power-off"></i> Logout', Yii::$app->request->hostInfo.'/backend/site/logout',['data-method' => 'post']) ?>
                      </li>
+
+                  
                   </ul>
                </div>
             </li>

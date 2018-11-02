@@ -28,6 +28,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'employee_id')->textInput() ?>
 
+    <?= $form->field($model, 'note')->textInput() ?>
+
     <?= $form->field($model, 'expenditure_id')->textInput() ?>
 
     <div class="form-group">

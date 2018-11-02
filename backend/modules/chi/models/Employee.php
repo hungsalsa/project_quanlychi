@@ -32,8 +32,8 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'location', 'status', 'created_at', 'updated_at', 'user_add'], 'required'],
-            [['created_at', 'updated_at', 'user_add'], 'integer'],
+            [['name', 'location','cua_hang', 'status', 'created_at', 'updated_at', 'user_add'], 'required'],
+            [['created_at','cua_hang', 'updated_at', 'user_add'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['phone'], 'string', 'max' => 12],
             [['location'], 'string', 'max' => 255],
@@ -49,15 +49,17 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'phone' => 'Phone',
-            'location' => 'Location',
-            'status' => 'Status',
+            'name' => 'Tên nhân viên',
+            'phone' => 'Số điện thoại',
+            'location' => 'Vị trí',
+            'status' => 'Trạng thái',
+            'cua_hang' => 'Cua Hang',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'user_add' => 'User Add',
         ];
     }
+
 
     public function getAllEmployee()
     {

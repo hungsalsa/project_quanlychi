@@ -8,7 +8,7 @@ use backend\modules\chi\models\ChitietchiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\filters\AccessControl;
 /**
  * ChitietchiController implements the CRUD actions for Chitietchi model.
  */
@@ -20,11 +20,49 @@ class ChitietchiController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        // 'actions' => ['logout', 'index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback'=> function ($rule ,$action)
+                        {
+                            $control = Yii::$app->controller->id;
+                            $action = Yii::$app->controller->action->id;
+                            $module = Yii::$app->controller->module->id;
+
+                            $role = $module.'/'.$control.'/'.$action;
+                            if (Yii::$app->user->can($role)) {
+                                return true;
+                            }
+                        }
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'logout' => ['post'],
+                    'delete' => ['post'],
                 ],
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
             ],
         ];
     }
@@ -66,10 +104,11 @@ class ChitietchiController extends Controller
     {
         $model = new Chitietchi();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load($post = Yii::$app->request->post())) {
+            $model->money = str_replace(',', '', $post['Chitietchi']['money']);
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
+        $model->save();
         return $this->render('create', [
             'model' => $model,
         ]);

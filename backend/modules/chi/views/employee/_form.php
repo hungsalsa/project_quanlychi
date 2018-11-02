@@ -27,7 +27,18 @@ use kartik\select2\Select2;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'status',['options' => ['class' => 'activeform col-md-1']])->widget(CheckboxX::classname(),
+    <?= $form->field($model, 'cua_hang',['options'=>['class'=>'col-md-6']])->widget(Select2::classname(), [
+        'data' => $dataCuahang,
+        'options' => ['placeholder' => '-- Làm tại --'],
+        'pluginOptions' => [
+            'tags' => true,
+            'tokenSeparators' => [',', ' '],
+            'maximumInputLength' => 10
+        ],
+    ]) ?>
+
+
+    <?= $form->field($model, 'status',['options' => ['class' => 'activeform col-md-2']])->widget(CheckboxX::classname(),
         [
             'initInputType' => CheckboxX::INPUT_CHECKBOX,
             'options'=>['value' => $model->status],

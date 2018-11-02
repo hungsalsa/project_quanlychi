@@ -42,11 +42,12 @@ class CostType extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'note' => 'Note',
-            'status' => 'Status',
+            'name' => 'Tên loại chi phí',
+            'note' => 'Ghi chú',
+            'status' => 'Trạng thái',
         ];
     }
+
 
     public function getAllCosttype()
     {

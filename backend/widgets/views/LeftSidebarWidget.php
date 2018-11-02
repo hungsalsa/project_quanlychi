@@ -8,25 +8,44 @@
             <li>
                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Quản lý chi <span class="label label-rounded label-danger">4</span></span></a>
                <ul aria-expanded="false" class="collapse">
-                  <li><a href="index.html">Minimal </a></li>
-                  <li><a href="index2.html">Analytical</a></li>
-                  <li><a href="<?= Yii::$app->homeUrl ?>chi/expenditure">Danh sách chi</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>chi/chingay/danhsach">Danh sách chi 2</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>chi/chingay">Danh sách chi</a></li>
                   <li><a href="<?= Yii::$app->homeUrl ?>chi/costtype">Loại chi phí</a></li>
                   <li><a href="<?= Yii::$app->homeUrl ?>chi/employee">Nhân viên</a></li>
                </ul>
             </li>
             <li>
-               <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Double-Circle"></i><span class="hide-menu">Apps</span></a>
+               <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Quản lý sản phầm <span class="label label-rounded label-danger">4</span></span></a>
                <ul aria-expanded="false" class="collapse">
-                  <li><a href="app-calendar.html">Calendar</a></li>
-                  <li><a href="app-chat.html">Chat app</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>sanpham/order">Xuất bán</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>sanpham/product">Sản phẩm</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>sanpham/productcate">Danh mục SP</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>sanpham/manufacture">Nhà sx</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>sanpham/unit">Đơn vị tính</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>sanpham/motorbike">QL xe</a></li>
+               </ul>
+            </li>
+            <li>
+               <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Quản lý Phiếu<span class="label label-rounded label-danger">4</span></span></a>
+               <ul aria-expanded="false" class="collapse">
+                  <li><a href="<?= Yii::$app->homeUrl ?>phieu/phieusudung">Sử dụng phiếu</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>phieu/phieugiao">Giao phiếu</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>phieu/sophieu">Số phiếu</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>phieu/phieuthieu">Số phiếu thiếu</a></li>
+               </ul>
+            </li>
+            <li>
+               <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Double-Circle"></i><span class="hide-menu">Doanh thu</span></a>
+               <ul aria-expanded="false" class="collapse">
+                  <li><a href="<?= Yii::$app->homeUrl ?>doanhthu/doanhthu">Doanh thu</a></li>
+                  <li><a href="<?= Yii::$app->homeUrl ?>doanhthu/cuahang">Cửa hàng</a></li>
                   <li><a href="app-ticket.html">Support Ticket</a></li>
                   <li><a href="app-contact.html">Contact / Employee</a></li>
                   <li><a href="app-contact2.html">Contact Grid</a></li>
                   <li><a href="app-contact-detail.html">Contact Detail</a></li>
                </ul>
             </li>
-            <li>
+            <!-- <li>
                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Box-Full"></i><span class="hide-menu">Inbox</span></a>
                <ul aria-expanded="false" class="collapse">
                   <li><a href="app-email.html">Mailbox</a></li>
@@ -212,7 +231,7 @@
                   </li>
                   <li><a href="#">item 1.4</a></li>
                </ul>
-            </li>
+            </li> -->
          </ul>
       </nav>
       <!-- End Sidebar navigation -->

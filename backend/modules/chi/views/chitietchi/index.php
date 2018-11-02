@@ -35,7 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
             //'sea_control',
             //'accounting_id',
             //'employee_id',
-            //'expenditure_id',
+            //'note',
+            'expenditure_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -19,7 +19,7 @@ class ChitietchiSearch extends Chitietchi
     {
         return [
             [['id', 'type', 'quantity', 'accounting_id', 'employee_id', 'expenditure_id'], 'integer'],
-            [['items_name', 'motorbike', 'sea_control'], 'safe'],
+            [['items_name', 'motorbike', 'sea_control','note'], 'safe'],
             [['money'], 'number'],
         ];
     }
@@ -71,7 +71,8 @@ class ChitietchiSearch extends Chitietchi
 
         $query->andFilterWhere(['like', 'items_name', $this->items_name])
             ->andFilterWhere(['like', 'motorbike', $this->motorbike])
-            ->andFilterWhere(['like', 'sea_control', $this->sea_control]);
+            ->andFilterWhere(['like', 'sea_control', $this->sea_control])
+            ->andFilterWhere(['like', 'note', $this->note]);
 
         return $dataProvider;
     }

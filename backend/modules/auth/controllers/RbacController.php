@@ -108,26 +108,27 @@ class RbacController extends Controller
         // Author ->index/create/view
         // Admin ->{Author} and update/delete ->index/create/view
 
-        $categories_index = $auth->createPermission('quantri/categories/index');
-        $categories_create = $auth->createPermission('quantri/categories/create');
-        $categories_view = $auth->createPermission('quantri/categories/view');
+        // $categories_index = $auth->createPermission('quantri/categories/index');
+        // $categories_create = $auth->createPermission('quantri/categories/create');
+        // $categories_view = $auth->createPermission('quantri/categories/view');
+        $categories_index = $auth->createPermission('chi/chingay/danhsach');
 
-        $categories_update = $auth->createPermission('quantri/categories/update');
-        $categories_delete = $auth->createPermission('quantri/categories/delete');
+        // $categories_update = $auth->createPermission('quantri/categories/update');
+        // $categories_delete = $auth->createPermission('quantri/categories/delete');
 
-        $author = $auth->createRole('author');
-        $auth->add($author);
-        $auth->addChild($author, $categories_index);
-        $auth->addChild($author, $categories_create);
-        $auth->addChild($author, $categories_view);
+        // $author = $auth->createRole('author');
+        // $auth->add($author);
+        // $auth->addChild($author, $categories_index);
+        // $auth->addChild($author, $categories_create);
+        // $auth->addChild($author, $categories_view);
 
         // add "admin" role and give this role the "updatePost" permission
         // as well as the permissions of the "author" role
         $admin = $auth->createRole('admin');
-        $auth->add($admin);
-        $auth->addChild($admin, $author);
-        $auth->addChild($admin, $categories_update);
-        $auth->addChild($admin, $categories_delete);
+        // $auth->add($admin);
+        // $auth->addChild($admin, $author);
+        // $auth->addChild($admin, $categories_update);
+        $auth->addChild($admin, $categories_index);
     }
     // Create Permission 
     public function actionCreate_permission()
@@ -135,26 +136,27 @@ class RbacController extends Controller
          $auth = Yii::$app->authManager;
          // $auth = new DbManager;
 
-        // add "quantri/categories/index" permission
-        $categories_index = $auth->createPermission('quantri/categories/index');
-        $categories_index->description = 'quantri/categories/index';
+        // add "chi/categories/index" permission
+        $categories_index = $auth->createPermission('chi/chingay/danhsach');
+        $categories_index->description = 'Hiện danh sách các khoản chi';
         $auth->add($categories_index);
-// add "quantri/categories/create" permission
-        $categories_create = $auth->createPermission('quantri/categories/create');
-        $categories_create->description = 'quantri/categories/create';
-        $auth->add($categories_create);
-// add "quantri/categories/update" permission
-        $categories_update = $auth->createPermission('quantri/categories/update');
-        $categories_update->description = 'quantri/categories/update';
-        $auth->add($categories_update);
-// add "quantri/categories/view" permission
-        $categories_view = $auth->createPermission('quantri/categories/view');
-        $categories_view->description = 'quantri/categories/view';
-        $auth->add($categories_view);
-// add "quantri/categories/delete" permission
-        $categories_delete = $auth->createPermission('quantri/categories/delete');
-        $categories_delete->description = 'quantri/categories/delete';
-        $auth->add($categories_delete);
+
+// // add "quantri/categories/create" permission
+//         $categories_create = $auth->createPermission('quantri/categories/create');
+//         $categories_create->description = 'quantri/categories/create';
+//         $auth->add($categories_create);
+// // add "quantri/categories/update" permission
+//         $categories_update = $auth->createPermission('quantri/categories/update');
+//         $categories_update->description = 'quantri/categories/update';
+//         $auth->add($categories_update);
+// // add "quantri/categories/view" permission
+//         $categories_view = $auth->createPermission('quantri/categories/view');
+//         $categories_view->description = 'quantri/categories/view';
+//         $auth->add($categories_view);
+// // add "quantri/categories/delete" permission
+//         $categories_delete = $auth->createPermission('quantri/categories/delete');
+//         $categories_delete->description = 'quantri/categories/delete';
+//         $auth->add($categories_delete);
 
         // add "updatePost" permission
         // $updatePost = $auth->createPermission('updatePost');

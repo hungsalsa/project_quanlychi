@@ -4974,3 +4974,9 @@ span.kv-date-picker,span.kv-date-remove{
 .datepicker table{
   width: 100%;
 }
+.status_active {
+    margin-top: 30px;
+}
+.form-control:disabled{
+  background: #aed8ad;
+}

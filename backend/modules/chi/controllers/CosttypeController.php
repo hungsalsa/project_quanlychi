@@ -66,6 +66,8 @@ class CosttypeController extends Controller
     {
         $model = new CostType();
 
+        $model->status = true;
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }

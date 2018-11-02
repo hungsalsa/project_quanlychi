@@ -18,7 +18,7 @@ class ChingaySearch extends Chingay
     public function rules()
     {
         return [
-            [['id', 'total_money', 'created_at', 'updated_at', 'user_add'], 'integer'],
+            [['id', 'total_money','cuahang_id', 'created_at', 'updated_at', 'user_add'], 'integer'],
             [['day', 'note', 'status'], 'safe'],
         ];
     }
@@ -49,6 +49,51 @@ class ChingaySearch extends Chingay
             'query' => $query,
         ]);
 
+        $dataProvider->setSort([
+            'attributes' => [
+                'updated_at' => [
+                    'asc' => ['updated_at' => SORT_ASC],
+                    'desc' => ['updated_at' => SORT_DESC],
+                    'default' => SORT_ASC
+                ],                
+                'day' => [
+                    'asc' => ['day' => SORT_ASC],
+                    'desc' => ['day' => SORT_DESC],
+                    'default' => SORT_ASC,
+                ],
+                'created_at' => [
+                    'asc' => ['created_at' => SORT_ASC],
+                    'desc' => ['created_at' => SORT_DESC],
+                    'default' => SORT_ASC,
+                ],
+                'total_money' => [
+                    'asc' => ['total_money' => SORT_ASC],
+                    'desc' => ['total_money' => SORT_DESC],
+                    'default' => SORT_ASC,
+                ],
+                'note' => [
+                    'asc' => ['note' => SORT_ASC],
+                    'desc' => ['note' => SORT_DESC],
+                    'default' => SORT_ASC,
+                ],
+                'status' => [
+                    'asc' => ['status' => SORT_ASC],
+                    'desc' => ['status' => SORT_DESC],
+                    'default' => SORT_ASC,
+                ],
+                'user_add' => [
+                    'asc' => ['user_add' => SORT_ASC],
+                    'desc' => ['user_add' => SORT_DESC],
+                    'default' => SORT_ASC,
+                ]
+            ],
+            'defaultOrder' => [
+                'updated_at' => SORT_DESC,
+                'day' => SORT_ASC,
+                'total_money' => SORT_ASC,
+            ]
+        ]);
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -61,6 +106,7 @@ class ChingaySearch extends Chingay
         $query->andFilterWhere([
             'id' => $this->id,
             'day' => $this->day,
+            'cuahang_id' => $this->cuahang_id,
             'total_money' => $this->total_money,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

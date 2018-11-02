@@ -167,28 +167,52 @@ function formatNumber(nStr, decSeperate, groupSeperate) {
             return x1 + x2;
         }
 
-        $(document).ready(function() {
-            
+$(document).ready(function() {
+    
 
 
-            var getSum = function() {
+    var getSum = function() {
 
-                var items = $(".item");
-                var total_money = 0;
+        var items = $(".item");
+        var total_money = 0;
 
-                items.each(function (index, elem) {
-                    var priceValue = $(elem).find(".money_item").val();
-                    //Check if priceValue is numeric or something like that
-                    total_money = parseInt(total_money) + parseInt(priceValue);
-                });
-                //Assign the total_money value to the field
-                $("#totalamount").val(formatNumber(total_money,'.',','));
-                // $("#totalamount").val(formatNumber(total_money, '.', ','));
-            };
-
-            //Bind new elements to support the function too
-            $(".container-items").on("change", ".money_item", function() {
-                getSum();
-            });
-
+        items.each(function (index, elem) {
+            var priceValue = $(elem).find(".money_item").val();
+            //Check if priceValue is numeric or something like that
+            total_money = parseInt(total_money) + parseInt(priceValue);
         });
+        //Assign the total_money value to the field
+        $(".total_money").val(formatNumber(total_money,'.',','));
+        // $("#totalamount").val(formatNumber(total_money, '.', ','));
+    };
+
+    //Bind new elements to support the function too
+    $(".container-items").on("change", ".money_item", function() {
+        getSum();
+    });
+
+
+    $(".dynamicform_wrapper").on("beforeInsert", function(e, item) {
+        console.log("beforeInsert");
+    });
+
+    $(".dynamicform_wrapper").on("afterInsert", function(e, item) {
+        console.log("afterInsert");
+    });
+
+    $(".dynamicform_wrapper").on("beforeDelete", function(e, item) {
+        if (! confirm("Are you sure you want to delete this item?")) {
+            return false;
+        }
+        return true;
+    });
+
+    $(".dynamicform_wrapper").on("afterDelete", function(e) {
+        console.log("Deleted item!");
+    });
+
+    $(".dynamicform_wrapper").on("limitReached", function(e, item) {
+        alert("Limit reached");
+    });
+
+});

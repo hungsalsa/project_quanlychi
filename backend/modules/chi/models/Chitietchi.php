@@ -36,13 +36,13 @@ class Chitietchi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'items_name', 'quantity', 'money', 'motorbike', 'sea_control', 'accounting_id', 'employee_id', 'expenditure_id'], 'required'],
-            [['type', 'quantity', 'accounting_id', 'employee_id', 'expenditure_id'], 'integer'],
-            [['money'], 'number'],
-            [['items_name'], 'string', 'max' => 255],
-            [['motorbike'], 'string', 'max' => 50],
+            [['type', 'items_name', 'quantity', 'money', 'motorbike', 'sea_control', 'accounting_id', 'employee_id'], 'required'],
+            [['type', 'quantity', 'accounting_id', 'employee_id', 'expenditure_id','motorbike'], 'integer'],
+            // [['money'], 'number'],
+            [['items_name','note'], 'string', 'max' => 255],
+            // [['motorbike'], 'string', 'max' => 50],
             [['sea_control'], 'string', 'max' => 20],
-            [['expenditure_id'], 'exist', 'skipOnError' => true, 'targetClass' => TblExpenditure::className(), 'targetAttribute' => ['expenditure_id' => 'id']],
+            [['expenditure_id'], 'exist', 'skipOnError' => true, 'targetClass' => Chingay::className(), 'targetAttribute' => ['expenditure_id' => 'id']],
         ];
     }
 
@@ -53,15 +53,16 @@ class Chitietchi extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type' => 'Type',
-            'items_name' => 'Items Name',
-            'quantity' => 'Quantity',
-            'money' => 'Money',
-            'motorbike' => 'Motorbike',
-            'sea_control' => 'Sea Control',
-            'accounting_id' => 'Accounting ID',
-            'employee_id' => 'Employee ID',
-            'expenditure_id' => 'Expenditure ID',
+            'type' => 'Loại chi',
+            'items_name' => 'Tên khoản chi',
+            'quantity' => 'Số lượng',
+            'money' => 'Số tiền',
+            'motorbike' => 'Cho xe',
+            'sea_control' => 'Biển số',
+            'accounting_id' => 'Kế toán',
+            'employee_id' => 'Người chi',
+            'note' => 'Ghi chú',
+            'expenditure_id' => 'Expenditure ID'
         ];
     }
 
@@ -70,6 +71,6 @@ class Chitietchi extends \yii\db\ActiveRecord
      */
     public function getExpenditure()
     {
-        return $this->hasOne(TblExpenditure::className(), ['id' => 'expenditure_id']);
+        return $this->hasOne(Expenditure::className(), ['id' => 'expenditure_id']);
     }
 }

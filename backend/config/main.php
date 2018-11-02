@@ -17,11 +17,20 @@ return [
         // 'quantri' => [
         //     'class' => 'backend\modules\quantri\Quantri',
         // ],
-        // 'auth' => [
-        //     'class' => 'backend\modules\auth\Module',
-        // ],
+        'auth' => [
+            'class' => 'backend\modules\auth\Module',
+        ],
         'chi' => [
             'class' => 'backend\modules\chi\chiphi',
+        ],
+        'sanpham' => [
+            'class' => 'backend\modules\sanpham\setting',
+        ],
+        'phieu' => [
+            'class' => 'backend\modules\phieu\quanly',
+        ],
+        'doanhthu' => [
+            'class' => 'backend\modules\doanhthu\setting',
         ],
     ],
     'components' => [

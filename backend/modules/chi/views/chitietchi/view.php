@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'sea_control',
             'accounting_id',
             'employee_id',
+            'note',
             'expenditure_id',
         ],
     ]) ?>
